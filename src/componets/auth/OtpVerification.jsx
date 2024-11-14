@@ -105,7 +105,7 @@ const OtpVerification = () => {
     const handleResendOTP = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/user/resend-otp/${id}`, {
+            const response = await fetch(`https://insta-back-kappa.vercel.app/api/v1/user/resend-otp/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
