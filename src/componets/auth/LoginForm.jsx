@@ -33,6 +33,14 @@ const LoginForm = () => {
             });
 
             const data = await response.json();
+            if(formData.email === '' && formData.username === ''){
+                toast.error('Please enter email or username');
+                return;
+            }
+            if(formData.password === ''){
+                toast.error('Please enter password');
+                return;
+            }
             
             if (data.success) {
                 localStorage.setItem('token', data.token);
