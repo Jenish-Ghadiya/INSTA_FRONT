@@ -3,7 +3,7 @@
   "name": "Instagram Clone App",
   "description": "Instagram Clone Progressive Web App",
   "background_color": "transparent",
-  "theme_color": "#ffffff",
+  "theme_color": "transparent",
   "icons": [
     {
       "src": "icons/manifest-icon-192.maskable.png",
