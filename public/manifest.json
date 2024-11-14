@@ -1,0 +1,18 @@
+{
+  "short_name": "InstaApp",
+  "name": "Instagram Clone App",
+  "description": "Instagram Clone Progressive Web App",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait"
+} 
