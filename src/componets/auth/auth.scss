@@ -6,6 +6,10 @@
     padding: 20px;
     background-color: #fafafa;
 
+    @media (max-width: 480px) {
+        padding: 15px;
+    }
+
     .auth-card, .auth-form {
         background-color: white;
         padding: 40px;
@@ -14,12 +18,22 @@
         width: 100%;
         max-width: 400px;
 
+        @media (max-width: 480px) {
+            padding: 25px;
+            max-width: 100%;
+        }
+
         h2 {
             color: #e41e3f;
             font-size: 24px;
             font-weight: 600;
             text-align: center;
             margin-bottom: 30px;
+
+            @media (max-width: 480px) {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
         }
 
         .form-group {
@@ -39,6 +53,11 @@
                 outline: none;
                 border-color: #e41e3f;
                 box-shadow: 0 0 0 3px rgba(#e41e3f, 0.1);
+            }
+
+            @media (max-width: 480px) {
+                padding: 10px 14px;
+                font-size: 14px;
             }
         }
 
@@ -148,6 +167,15 @@
             justify-content: space-between;
             gap: 3px;
             margin-bottom: 20px;
+
+            @media (max-width: 480px) {
+                gap: 8px;
+                
+                .otp-input-box input {
+                    height: 35px;
+                    font-size: 16px;
+                }
+            }
 
             .otp-input-box {
                 flex: 1;
@@ -329,6 +357,11 @@
             &:active:not(:disabled) {
                 transform: translateY(0);
             }
+
+            @media (max-width: 480px) {
+                height: 44px;
+                font-size: 13px;
+            }
         }
 
         .back-to-login {
@@ -382,4 +415,22 @@
 
 .new-password-input {
     margin-bottom: 0px !important;
+}
+
+@media (max-height: 600px) {
+    .auth-container {
+        padding: 10px;
+        
+        .auth-card, .auth-form {
+            padding: 20px;
+            
+            h2 {
+                margin-bottom: 15px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+    }
 }
