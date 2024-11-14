@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
 
@@ -10,6 +10,24 @@ const OtpVerification = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const otpQuery = searchParams.get('otp');
+
+    useEffect(() => {
+        if (otpQuery) {
+            const otpArray = otpQuery.split('').slice(0, 6);
+            setOtp(otpArray);
+            
+            // Focus the last input after OTP is auto-filled
+            // setTimeout(() => {
+            //     const inputs = document.querySelectorAll('.otp-input-box input');
+            //     const lastInput = inputs[otpArray.length - 1];
+            //     if (lastInput) {
+            //         lastInput.focus();
+            //     }
+            // }, 0);
+        }
+    }, [otpQuery]);
 
     useEffect(() => {
         if (timeLeft > 0) {

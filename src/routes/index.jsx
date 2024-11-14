@@ -6,6 +6,7 @@ import LoginForm from "../componets/auth/LoginForm";
 import ForgotPasswordEmail from '../componets/auth/forgtpassword/ForgotPasswordEmail';
 import ForgotPasswordOTP from '../componets/auth/forgtpassword/ForgotPasswordOTP';
 import ResetPassword from '../componets/auth/forgtpassword/ResetPassword';
+import Home from '../componets/home/index';
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <h1>Home</h1>,
+        element: <Home />,
     },
     {
         path: '*',

@@ -10,6 +10,15 @@ const ForgotPasswordOTP = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const otpQuery = searchParams.get('otp');
+
+    useEffect(() => {
+        if (otpQuery) {
+            const otpArray = otpQuery.split('').slice(0, 6);
+            setOtp(otpArray);
+        }
+    }, [otpQuery]);
 
     useEffect(() => {
         if (timeLeft > 0) {
