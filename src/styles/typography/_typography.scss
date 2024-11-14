@@ -1,0 +1,42 @@
+/* Heading mixin */
+@mixin heading {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Subheading mixin */
+@mixin subheading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Body text mixin */
+@mixin body-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Small text mixin */
+@mixin small-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Caption text mixin */
+@mixin caption-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Button text mixin */
+@mixin button-text {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
