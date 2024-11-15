@@ -1,5 +1,14 @@
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+    user-select: text;
+    -webkit-user-select: text;
 }
 
 body {
