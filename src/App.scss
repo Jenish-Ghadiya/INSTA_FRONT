@@ -1,0 +1,37 @@
+body {
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-container {
+    background-color: var(--background-secondary);
+
+    .auth-card, .auth-form {
+        background-color: var(--card-background);
+        box-shadow: 0 0 20px var(--shadow-color);
+
+        h2 {
+            color: var(--accent-color);
+        }
+
+        input {
+            background-color: var(--input-background);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+
+            &:focus {
+                border-color: var(--accent-color);
+                box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.1);
+            }
+        }
+
+        button {
+            background-color: var(--accent-color);
+
+            &:hover:not(:disabled) {
+                background-color: var(--accent-hover);
+            }
+        }
+    }
+}

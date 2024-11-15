@@ -163,3 +163,29 @@
     --theme-dark-muted-text: #495057;
     --theme-dark-muted-border: #495057;
 }
+
+[data-theme="light"] {
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --accent-color: #e41e3f;
+    --accent-hover: #c4172f;
+    --card-background: #ffffff;
+    --input-background: #f4f4f4;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --background-primary: #1a1a1a;
+    --background-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --border-color: #404040;
+    --accent-color: #ff1f47;
+    --accent-hover:  #ff4d6a;
+    --card-background: #1a1a1a;
+    --input-background: #2d2d2d;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+}

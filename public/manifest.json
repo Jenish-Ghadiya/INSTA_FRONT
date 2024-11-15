@@ -4,6 +4,9 @@
   "description": "Vatu - A Social Media App",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": ".",
   "icons": [
     {
       "src": "icons/manifest-icon-192.maskable.png",
@@ -23,8 +26,5 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 } 
