@@ -3,7 +3,7 @@
   "name": "Vatu",
   "description": "Vatu - A Social Media App",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#000000",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": ".",
