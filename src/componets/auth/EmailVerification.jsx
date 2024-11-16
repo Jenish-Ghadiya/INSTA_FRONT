@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
-
+import { BASE_URL } from '../../utils/utils';
 const EmailVerification = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ const EmailVerification = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch('https://insta-back-kappa.vercel.app/api/v1/user/signup/sendmail', {
+            const response = await fetch(`${BASE_URL}/user/signup/sendmail`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

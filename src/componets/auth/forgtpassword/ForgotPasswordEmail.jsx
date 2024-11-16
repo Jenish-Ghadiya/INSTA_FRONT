@@ -18,7 +18,7 @@ const ForgotPasswordEmail = () => {
 
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/v1/user/forgot-password/sendmail', {
+            const response = await fetch(`${BASE_URL}/user/forgot-password/sendmail`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

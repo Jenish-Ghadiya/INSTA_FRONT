@@ -14,7 +14,7 @@ const SignupForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://insta-back-kappa.vercel.app/api/v1/user/signup/createuser/${id}`, {
+            const response = await fetch(`${BASE_URL}/user/signup/createuser/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

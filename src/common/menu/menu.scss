@@ -1,0 +1,82 @@
+.menu-container {
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    padding: 0 0 20px ;
+    width: 250px;
+    height: 100vh;
+    border-right: 1px solid var(--border-color);
+    font-family: "Roboto", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .logo {
+        font-family: "Satisfy", cursive;
+        font-size: 28px;
+        margin: 20px auto;
+        display: block;
+        text-align: center;
+        color: var(--accent-color);
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 8px;
+            margin: 0 8px;
+
+            &:hover {
+                background-color: var(--background-secondary);
+            }
+
+            .icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 16px;
+            }
+
+            .profile-icon {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                margin-right: 16px;
+            }
+
+            span {
+                font-size: 16px;
+                font-weight: 400;
+                color: var(--text-primary);
+                font-family: "Roboto", serif;
+            }
+
+            &.active {
+                font-weight: 500;
+                color: var(--accent-color);
+            }
+        }
+    }
+
+    .more-button {
+        margin: 0 8px;
+        padding: 12px 0;
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 8px;
+            margin: 0 8px;
+            &:hover {
+                background-color: var(--background-secondary);
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import '../../styles/index.scss';
+
+.home-container{
+    display: flex;
+    .menu{
+        width: 250px;
+        height: 100vh;
+        background-color: var(--background-primary);
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+}
+
+
+
+

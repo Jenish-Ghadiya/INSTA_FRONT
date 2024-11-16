@@ -1,12 +1,23 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import Menu from "../../common/menu";
+import "./home.scss";
 
 export default function Home() {
     const navigate = useNavigate();
     return (
-        <div>
-            <h1>Home</h1>
-            <button onClick={() => navigate('/login')}>login</button>
-        </div>
-    )
+        <>
+            <div className="home-container">
+                <div>
+                    <div className="menu">
+                        <Menu />
+                    </div>
+                </div>
+                <div className="content-container">
+                    <button onClick={() => navigate("/login")}>login</button>
+                    <Outlet />
+                </div>
+            </div>
+        </>
+    );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
-
+import { BASE_URL } from '../../utils/utils';
 const OtpVerification = () => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [timeLeft, setTimeLeft] = useState(60);
@@ -82,7 +82,7 @@ const OtpVerification = () => {
         }
 
         try {
-            const response = await fetch(`https://insta-back-kappa.vercel.app/api/v1/user/signup/verifyotp/${id}`, {
+            const response = await fetch(`${BASE_URL}/user/signup/verifyotp/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const OtpVerification = () => {
     const handleResendOTP = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`https://insta-back-kappa.vercel.app/api/v1/user/resend-otp/${id}`, {
+            const response = await fetch(`${BASE_URL}/user/resend-otp/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

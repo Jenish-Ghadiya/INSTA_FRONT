@@ -108,11 +108,16 @@
         .resend-button {
             margin-top: 10px;
             background-color: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-
-            &:hover:not(:disabled) {
-                background-color: rgba(var(--accent-color), 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            
+            &:hover {
+                background-color: #fff0f0;
+            }
+            
+            &:disabled {
+                border-color: #ccc;
+                color: #ccc;
             }
         }
 
@@ -167,7 +172,7 @@
         .otp-input-container {
             display: flex;
             justify-content: space-between;
-            gap: 3px;
+            gap: 5px;
             margin-bottom: 20px;
 
             @media (max-width: 480px) {
@@ -434,5 +439,12 @@
                 margin-bottom: 15px;
             }
         }
+    }
+}
+
+.resend-button {
+    margin: 0 0 14px 0 !important;
+    &:hover {
+        color: #fff !important;
     }
 }

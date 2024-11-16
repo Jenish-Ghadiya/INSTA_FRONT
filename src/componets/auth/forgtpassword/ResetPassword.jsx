@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import '../auth.scss';
+import { BASE_URL } from '../../../utils/utils';
 
 const ResetPassword = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const ResetPassword = () => {
 
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/user/forgot-password/updatepassword/${id}`, {
+            const response = await fetch(`${BASE_URL}/user/forgot-password/updatepassword/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

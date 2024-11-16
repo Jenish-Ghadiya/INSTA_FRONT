@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
+import { BASE_URL } from '../../utils/utils';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const LoginForm = () => {
         setLoading(true);
         
         try {
-            const response = await fetch('https://insta-back-kappa.vercel.app/api/v1/user/login', {
+            const response = await fetch(`${BASE_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

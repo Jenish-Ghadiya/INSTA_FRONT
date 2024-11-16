@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://insta-back-kappa.vercel.app/api/v1';

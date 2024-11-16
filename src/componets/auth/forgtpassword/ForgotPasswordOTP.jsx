@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams , useSearchParams} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import '../auth.scss';
+import { BASE_URL } from '../../../utils/utils';
 
 const ForgotPasswordOTP = () => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [timeLeft, setTimeLeft] = useState(60);
     const [isExpired, setIsExpired] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [resendLoading, setResendLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
     const [searchParams] = useSearchParams();
@@ -71,7 +73,7 @@ const ForgotPasswordOTP = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/user/forgot-password/verifyotp/${id}`, {
+            const response = await fetch(`${BASE_URL}/user/forgot-password/verifyotp/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,6 +90,31 @@ const ForgotPasswordOTP = () => {
             }
         } catch (error) {
             toast.error('Something went wrong');
+        }
+    };
+
+    const handleResendOTP = async () => {
+        setResendLoading(true);
+        try {
+            const response = await fetch(`${BASE_URL}/user/forgot-password/resend-otp/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                toast.success('OTP resent successfully');
+                setTimeLeft(60);
+                setIsExpired(false);
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error('Failed to resend OTP');
+        } finally {
+            setResendLoading(false);
         }
     };
 
@@ -115,6 +142,16 @@ const ForgotPasswordOTP = () => {
                 )}
                 {isExpired && (
                     <p className="expired">OTP has expired</p>
+                )}
+                {isExpired && (
+                    <button 
+                        type="button" 
+                        onClick={handleResendOTP}
+                        disabled={resendLoading}
+                        className="resend-button"
+                    >
+                        {resendLoading ? 'Resending...' : 'Resend OTP'}
+                    </button>
                 )}
                 <button type="submit" disabled={isExpired}>
                     Verify OTP
