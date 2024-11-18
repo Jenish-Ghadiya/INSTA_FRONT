@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './menu.scss';
 import { 
@@ -11,9 +11,26 @@ import {
   AiOutlineMenu 
 } from 'react-icons/ai';
 import { RiVideoLine } from 'react-icons/ri';
+import { BASE_URL } from '../../utils/utils';
 
 const Menu = () => {
   const location = useLocation();
+  const [profile, setProfile] = useState(null);
+
+  console.log(profile);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [profile]);
+
+  const fetchProfile = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${BASE_URL}/user/profile`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await response.json();
+    setProfile(data.data.profilepic);
+  }
 
   const menuItems = [
     { icon: <AiFillHome size={24} />, label: 'Home', path: '/' },
@@ -25,8 +42,7 @@ const Menu = () => {
     { icon: <AiOutlinePlusSquare size={24} />, label: 'Create', path: '/create' },
     { 
       icon: <img 
-        src="/path-to-profile-image.jpg" 
-        alt="Profile" 
+        src={profile}  
         className="profile-icon" 
       />, 
       label: 'Profile', 

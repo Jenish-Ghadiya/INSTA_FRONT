@@ -33,4 +33,11 @@
     &:hover svg {
         transform: rotate(360deg);
     }
+
+    @media (max-width: 768px) {
+        bottom: 70px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
 } 

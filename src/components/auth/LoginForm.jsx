@@ -22,6 +22,15 @@ const LoginForm = () => {
         setLoading(true);
         
         try {
+            if(formData.email === '' && formData.username === ''){
+                toast.error('Please enter email or username');
+                return;
+            }
+            if(formData.password === ''){
+                toast.error('Please enter password');
+                return;
+            }
+            
             const response = await fetch(`${BASE_URL}/user/login`, {
                 method: 'POST',
                 headers: {
@@ -34,15 +43,6 @@ const LoginForm = () => {
             });
 
             const data = await response.json();
-            if(formData.email === '' && formData.username === ''){
-                toast.error('Please enter email or username');
-                return;
-            }
-            if(formData.password === ''){
-                toast.error('Please enter password');
-                return;
-            }
-            
             if (data.success) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
@@ -50,10 +50,10 @@ const LoginForm = () => {
                 console.log(data.success);
                 navigate('/', { replace: true });
             } else {
-                toast.error(data);
+                toast.error(data.message);
             }
         } catch (error) {
-            toast.error('Network error. Please try again.');
+            toast.error(error.message);
         } finally {
             setLoading(false);
         }

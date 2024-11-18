@@ -4,11 +4,16 @@
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
+    font-family: "Roboto", serif;
 }
 
 input, textarea {
     user-select: text;
     -webkit-user-select: text;
+    font-family: "Roboto", serif;
+}
+button {
+    font-family: "Roboto", serif;
 }
 
 body {

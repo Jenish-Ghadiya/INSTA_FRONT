@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
+import { BASE_URL } from '../../utils/utils';
 
 const SignupForm = () => {
     const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ const SignupForm = () => {
                 toast.error(data.message);
             }
         } catch (error) {
-            toast.error('Something went wrong');
+            toast.error(error.message);
         }
     };
 
