@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './auth.scss';
 import { BASE_URL } from '../../utils/utils';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const LoginForm = () => {
     const [loginType, setLoginType] = useState('email');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,11 +46,8 @@ const LoginForm = () => {
 
             const data = await response.json();
             if (data.success) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
-                toast.success(data.message);
-                console.log(data.success);
-                navigate('/', { replace: true });
+                login(data.token);
+                navigate('/');
             } else {
                 toast.error(data.message);
             }

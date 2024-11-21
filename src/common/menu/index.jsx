@@ -12,6 +12,7 @@ import {
 } from 'react-icons/ai';
 import { RiVideoLine } from 'react-icons/ri';
 import { BASE_URL } from '../../utils/utils';
+import { SmallLoader } from "../loader/index";
 
 const Menu = () => {
   const location = useLocation();
@@ -41,12 +42,13 @@ const Menu = () => {
     { icon: <AiOutlineHeart size={24} />, label: 'Notifications', path: '/notifications' },
     { icon: <AiOutlinePlusSquare size={24} />, label: 'Create', path: '/create' },
     { 
-      icon: <img 
-        src={profile}  
-        className="profile-icon" 
-      />, 
-      label: 'Profile', 
-      path: '/profile' 
+      icon: profile ? (
+        <img src={profile} className="profile-icon" alt="profile" />
+      ) : (
+        <SmallLoader />
+      ),
+      label: 'Profile',
+      path: '/profile'
     },
   ];
 

@@ -5,20 +5,18 @@ import router from './routes'
 import './styles/index.scss';
 import { Toaster } from 'react-hot-toast';
 import ThemeToggle from './common/theme/ThemeToggle';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   useEffect(() => {
-    // Update meta theme-color based on current theme
     const updateMetaThemeColor = () => {
       const theme = document.documentElement.getAttribute('data-theme');
       const color = theme === 'dark' ? '#1a1a1a' : '#ffffff';
       document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
     };
 
-    // Initial update
     updateMetaThemeColor();
 
-    // Listen for theme changes
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -36,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <AuthProvider>
       <RouterProvider router={router} />
       <ThemeToggle />
       <Toaster 
@@ -47,8 +45,8 @@ function App() {
           },
         }}
       />
-    </>
+    </AuthProvider>
   )
 }
 
-export default App
+export default App;

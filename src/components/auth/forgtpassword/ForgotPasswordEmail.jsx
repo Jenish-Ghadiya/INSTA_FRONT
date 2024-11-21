@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { FiMail, FiArrowLeft, FiLock } from 'react-icons/fi';
 import '../auth.scss';
+import { BASE_URL } from '../../../utils/utils';
 
 const ForgotPasswordEmail = () => {
     const [email, setEmail] = useState('');
@@ -34,7 +35,7 @@ const ForgotPasswordEmail = () => {
                 toast.error(data.message || 'Failed to send OTP');
             }
         } catch (error) {
-            toast.error('Failed to send OTP. Please try again later.');
+            toast.error(error.message || 'Failed to send OTP');
         } finally {
             setLoading(false);
         }

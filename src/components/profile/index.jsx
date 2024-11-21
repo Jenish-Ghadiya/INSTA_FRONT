@@ -3,13 +3,20 @@ import "./profile.scss";
 import { BASE_URL } from "../../utils/utils";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { ContentLoader, SmallLoader } from '../../common/loader/index';
 
 export default function Profile() {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetchProfile();
+        const init = async () => {
+            await fetchProfile();
+            await fetchPosts();
+        };
+        init();
     }, []);
     const navigate = useNavigate();
 
@@ -35,10 +42,31 @@ export default function Profile() {
         }
     };
 
+    const fetchPosts = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`${BASE_URL}/user/post/user-posts`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                setPosts(data.posts);
+            } else {
+                toast.error(data.message || "Error fetching posts");
+            }
+        } catch (error) {
+            toast.error("Error fetching posts");
+        }
+    };
+
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        setUploadingImage(true);
         const formData = new FormData();
         formData.append("profilepic", file);
 
@@ -61,11 +89,13 @@ export default function Profile() {
             }
         } catch (error) {
             toast.error("Error uploading image");
+        } finally {
+            setUploadingImage(false);
         }
     };
 
     if (loading) {
-        return <div className="profile">Loading...</div>;
+        return <ContentLoader />;
     }
 
     return (
@@ -84,10 +114,16 @@ export default function Profile() {
                             className="profile__avatar-upload"
                             onClick={() => document.getElementById("profilePicInput").click()}
                         >
-                            <img
-                                src={profile?.profilepic || "https://via.placeholder.com/150"}
-                                alt="profile"
-                            />
+                            {uploadingImage ? (
+                                <div className="profile__avatar-loading">
+                                    <SmallLoader />
+                                </div>
+                            ) : (
+                                <img
+                                    src={profile?.profilepic || "https://via.placeholder.com/150"}
+                                    alt="profile"
+                                />
+                            )}
                         </div>
                     </div>
                     <div className="profile__info">
@@ -103,7 +139,7 @@ export default function Profile() {
                         </div>
                         <div className="profile__stats">
                             <div className="profile__stat">
-                                <span className="profile__stat-value">0</span>{" "}
+                                <span className="profile__stat-value">{posts.length}</span>{" "}
                                 posts
                             </div>
                             <div className="profile__stat">
@@ -118,6 +154,27 @@ export default function Profile() {
                         <div className="profile__bio">
                             <h2 className="profile__name">{profile?.name || "Loading..."}</h2>
                         </div>
+                    </div>
+                </div>
+                <div className="profile__posts">
+                    <div className="profile__posts-header">
+                        <h3>Posts</h3>
+                        <button onClick={() => navigate('/create-post')} className="create-post-btn">
+                            Create Post
+                        </button>
+                    </div>
+                    <div className="profile__posts-grid">
+                        {posts.map((post) => (
+                            <div key={post._id} className="profile__post">
+                                <img src={post.image} alt={post.caption} />
+                                <div className="post__overlay">
+                                    <div className="post__stats">
+                                        <span>{post.likes.length} likes</span>
+                                        <span>{post.comments.length} comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

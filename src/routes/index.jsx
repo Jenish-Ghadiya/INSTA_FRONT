@@ -1,67 +1,115 @@
-import { createBrowserRouter } from "react-router-dom";
-import EmailVerification from '../components/auth/EmailVerification';
-import OtpVerification from '../components/auth/OtpVerification';
-import SignupForm from '../components/auth/SignupForm';
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import PublicRoute from "../components/auth/PublicRoute";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+import EmailVerification from "../components/auth/EmailVerification";
+import OtpVerification from "../components/auth/OtpVerification";
+import SignupForm from "../components/auth/SignupForm";
 import LoginForm from "../components/auth/LoginForm";
-import ForgotPasswordEmail from '../components/auth/forgtpassword/ForgotPasswordEmail';
-import ForgotPasswordOTP from '../components/auth/forgtpassword/ForgotPasswordOTP';
-import ResetPassword from '../components/auth/forgtpassword/ResetPassword';
-import Home from '../components/home/index';
+import ForgotPasswordEmail from "../components/auth/forgtpassword/ForgotPasswordEmail";
+import ForgotPasswordOTP from "../components/auth/forgtpassword/ForgotPasswordOTP";
+import ResetPassword from "../components/auth/forgtpassword/ResetPassword";
+import Home from "../components/home/index";
 import DefaultLayout from "./defaultLayout/defaultlayout";
 import Profile from "../components/profile";
 import Edit from "../components/profile/edit";
+import CreatePost from "../components/post/CreatePost";
+import PostDetail from "../components/post/PostDetail";
+import ExplorePost from "../components/post/ExplorePost";
 
 const router = createBrowserRouter([
     {
-        path: '/email-verification',
-        element: <EmailVerification />,
+        path: "/email-verification",
+        element: (
+            <PublicRoute>
+                <EmailVerification />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/verify-otp/:id',
-        element: <OtpVerification />,
+        path: "/verify-otp/:id",
+        element: (
+            <PublicRoute>
+                <OtpVerification />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/create-account/:id',
-        element: <SignupForm />,
+        path: "/create-account/:id",
+        element: (
+            <PublicRoute>
+                <SignupForm />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/login',
-        element: <LoginForm />,
+        path: "/login",
+        element: (
+            <PublicRoute>
+                <LoginForm />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/forgot-password',
-        element: <ForgotPasswordEmail />,
+        path: "/forgot-password",
+        element: (
+            <PublicRoute>
+                <ForgotPasswordEmail />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/verify-forgot-otp/:id',
-        element: <ForgotPasswordOTP />,
+        path: "/verify-forgot-otp/:id",
+        element: (
+            <PublicRoute>
+                <ForgotPasswordOTP />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/reset-password/:id',
-        element: <ResetPassword />,
+        path: "/reset-password/:id",
+        element: (
+            <PublicRoute>
+                <ResetPassword />
+            </PublicRoute>
+        ),
     },
     {
-        path: '/',
-        element: <DefaultLayout />,
+        path: "/",
+        element: (
+            <ProtectedRoute>
+                <DefaultLayout />
+            </ProtectedRoute>
+        ),
         children: [
             {
-                path: '/',
+                path: "/",
                 element: <Home />,
             },
             {
-                path: '/profile',
+                path: "/profile",
                 element: <Profile />,
             },
             {
-                path: '/profile/edit',
+                path: "/profile/edit",
                 element: <Edit />,
+            },
+            {
+                path: "/create-post",
+                element: <CreatePost />,
+            },
+            {
+                path: "/post/:postId",
+                element: <PostDetail />,
+            },
+            {
+                path: "/explore",
+                element: <ExplorePost />,
             },
         ],
     },
-    
     {
-        path: '*',
-        element: <h1>404 Error!</h1>,
+        path: "*",
+        element: <Navigate to="/login" replace />,
     },
 ]);
 
